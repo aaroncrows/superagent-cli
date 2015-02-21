@@ -57,4 +57,10 @@ describe('parser', function() {
     expect(result.data).to.be.ok;
     expect(result.data.hello).to.eql('world.com');
   });
+  it('should be able to send strings with spaces in them', function(){
+    var args = ['http://google.com', 'post', '{hello: ', '"this is dog"}'];
+    var result = parser.parse(args);
+    expect(result.data).to.be.ok;
+    expect(result.data.hello).to.eql('this is dog');
+  })
 });
